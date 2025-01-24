@@ -11,13 +11,20 @@ const regForm = ref<User>({
   role: 0
 })
 
+const errorMessage = ref({
+  name: '',
+  email: '',
+  password: '',
+  confirm_password: '',
+})
+
 function onRegister() {
   userservice.registerUser(regForm.value)
     .then((res) => {
       console.log(res);
     })
     .catch((err) => {
-      console.log(err);
+      errorMessage.value = err.data.data
     })
 }
 </script>
